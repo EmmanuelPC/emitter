@@ -2,7 +2,7 @@
 #include "Manchester.h"
 #include "Channel.h"
 
-#define SYMBOL_PERIOD 10000
+#define SYMBOL_PERIOD 5000
 #define NUM_SYMBOLS 20
 
 #define STX 0x02
@@ -50,7 +50,7 @@ void loop() {
   if (Serial.available() > 0) {
     int ch = Serial.read();
 
-    if (ch == '\n') {
+    if (serialCh.available() > 0 && ch == '\n') {
       char c;
 
       while (!transmitCh.put(STX)) {
