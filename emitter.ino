@@ -1,4 +1,5 @@
 #include <TimerOne.h>
+#include <SoftwareSerial.h>
 #include "Manchester.h"
 #include "Channel.h"
 
@@ -9,9 +10,12 @@
 #define STX 0x02
 #define ETX 0x03
 
-#define LED_PIN 2
+#define LED_PIN 12
+#define BLE_RX 2
+#define BLE_TX 3
 
 Channel transmitCh, serialCh;
+SoftwareSerial bleSerial(BLE_RX, BLE_TX);
 
 unsigned long symbols = 0;
 int symbolCounter = 0;
@@ -39,7 +43,7 @@ void timerInterrupt() {
 }
 
 void setup() {
-  Serial.begin(9600);
+  bleSerial.begin(9600);
 
   pinMode(LED_PIN, OUTPUT);
 
@@ -48,8 +52,8 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available() > 0) {
-    int ch = Serial.read();
+  if (bleSerial.available() > 0) {
+    int ch = bleSerial.read();
 
     if (serialCh.available() > 0 && ch == '\n') {
       char c;
