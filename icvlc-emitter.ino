@@ -2,7 +2,7 @@
 #include "Manchester.h"
 #include "Channel.h"
 
-#define SYMBOL_PERIOD 5000
+#define SYMBOL_PERIOD 3000
 #define NUM_SYMBOLS 20
 
 #define STX 0x02
