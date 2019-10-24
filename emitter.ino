@@ -2,9 +2,10 @@
 #include "Manchester.h"
 #include "Channel.h"
 
-#define SYMBOL_PERIOD 3000
+#define SYMBOL_PERIOD 2000
 #define NUM_SYMBOLS 20
 
+#define SYN 0x04
 #define STX 0x02
 #define ETX 0x03
 
@@ -22,7 +23,7 @@ void timerInterrupt() {
     if (transmitCh.get(&ch)) {
       symbols = encodeWord(ch);
     } else {
-      symbols = 0x55555;
+      symbols = encodeWord(SYN);
     }
 
     symbolCounter = 0;
