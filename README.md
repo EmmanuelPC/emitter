@@ -4,7 +4,11 @@
 
 블루투스로 입력받은 메시지를 맨체스터 부호화하여 LED를 깜빡이는 아두이노 프로그램
 
-## Usage
+## 회로 구성
+
+![Emitter Circuit Diagram](emitter.png)
+
+## 사용법
 
 **TimerOne 라이브러리 추가하기**
 
